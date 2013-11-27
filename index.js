@@ -11,6 +11,14 @@ var zwave = new OpenZWave('/dev/ttyUSB0', {
 });
 var nodes = [];
 
+var zwaveRepl = repl.start({
+  prompt: 'zwave-repl> ',
+  input: process.stdin,
+  output: process.stdout
+});
+zwaveRepl.context.zwave = zwave;
+zwaveRepl.context.nodes = nodes;
+
 zwave.on('driver ready', function(homeid) {
   console.log('scanning homeid=0x%s...', homeid.toString(16));
 });
@@ -120,13 +128,6 @@ zwave.on('notification', function(nodeid, notif) {
 
 zwave.on('scan complete', function() {
   console.log('scan complete, hit ^C to finish.');
-  var zwaveRepl = repl.start({
-    prompt: 'zwave-repl> ',
-    input: process.stdin,
-    output: process.stdout
-  });
-  zwaveRepl.context.zwave = zwave;
-  zwaveRepl.context.nodes = nodes;
 });
 
 zwave.connect();
