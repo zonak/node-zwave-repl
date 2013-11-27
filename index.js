@@ -15,6 +15,10 @@ var zwaveRepl = repl.start({
   prompt: 'zwave-repl> ',
   input: process.stdin,
   output: process.stdout
+}).on('exit', function () {
+  console.log('Goodbye.');
+  zwave.disconnect();
+  process.exit();
 });
 zwaveRepl.context.zwave = zwave;
 zwaveRepl.context.nodes = nodes;
