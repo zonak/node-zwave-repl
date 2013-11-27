@@ -1,0 +1,11 @@
+{
+  "name": "zwave-repl",
+  "version": "0.0.1",
+  "description": "Z-Wave REPL",
+  "main": "index.js",
+  "author": "Zoran Nakev",
+  "license": "MIT",
+  "dependencies": {
+    "openzwave": "~0.0.32"
+  }
+}
